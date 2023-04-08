@@ -1,0 +1,12 @@
+basePath: /api/v1
+host: Пример = app.test.kz
+info:
+  contact:
+    email: Имейл
+    name: Автор
+  description: описание сервиса
+  termsOfService: http://swagger.io/terms/
+  title: testProject
+  version: "0.1"
+paths: {}
+swagger: "2.0"

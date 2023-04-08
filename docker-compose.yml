@@ -1,0 +1,71 @@
+version: "3.9"
+
+networks:
+  internal:
+    external: false
+
+volumes:
+  loan-api_data:
+
+services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  app:
+    network_mode: bridge
+    image: cosmtrek/air
+    working_dir: /src
+    ports:
+      - "8585:8585"
+      - "8586:8586"
+    volumes:
+      - .:/src
+    environment:
+      - GOPRIVATE=*.fortebank.com
+      - GONOSUMDB=off
+      - TZ=Asia/Almaty
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASS=postgres
+      - POSTGRES_PORT=5432
+    networks:
+      - internal
+    depends_on:
+      - postgres
+      - redis
+      - zookeeper
+      - kafka
+  postgres:
+    image: postgres:13.2-alpine
+    volumes:
+      - loan-api_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - internal
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:alpine
+    networks:
+      - internal
+    ports:
+      - "6379:6379"
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181

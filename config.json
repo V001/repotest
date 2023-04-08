@@ -1,0 +1,8 @@
+{
+  "appName": "testProject",
+  "namespace": "jsonNameSpace",
+  "project": "dl",
+  "maintainerName": "Vorontsov Ruslan",
+  "useDB": true,
+  "useHTTPClient": true
+}

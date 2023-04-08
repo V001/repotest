@@ -1,0 +1,54 @@
+basePath: /api/v1
+definitions:
+  model.CreateResp:
+    properties:
+      createdAt:
+        type: string
+      id:
+        type: integer
+    type: object
+  model.UserCreateReq:
+    properties:
+      login:
+        type: string
+      name:
+        type: string
+      pass:
+        type: string
+      surName:
+        type: string
+    type: object
+host: localhost:9091
+info:
+  contact:
+    email: Имейл
+    name: Автор
+  description: описание сервиса
+  termsOfService: http://swagger.io/terms/
+  title: testProject
+  version: "0.1"
+paths:
+  /api/v1/user:
+    post:
+      consumes:
+      - application/json
+      description: Создание пользователя
+      operationId: CreateOrder
+      parameters:
+      - description: Входящие данные
+        in: body
+        name: rq
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserCreateReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CreateResp'
+      summary: Создание пользователя
+      tags:
+      - user
+swagger: "2.0"

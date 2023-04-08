@@ -1,0 +1,16 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "описание сервиса",
+        "title": "testProject",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Автор",
+            "email": "Имейл"
+        },
+        "version": "0.1"
+    },
+    "host": "Пример = app.test.kz",
+    "basePath": "/api/v1",
+    "paths": {}
+}

@@ -1,0 +1,14 @@
+GET localhost:9090/api/v1/hello
+Accept: application/json
+
+
+### Send POST request with json body
+POST localhost:9091/api/v1/user/
+Content-Type: application/json
+
+{
+  "Name":  "test",
+  "SurName": "test",
+  "Pass":  "test",
+  "Login": "test"
+}
