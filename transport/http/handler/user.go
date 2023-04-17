@@ -17,7 +17,7 @@ import (
 // @Success	     200  {object}  model.CreateResp
 // @Router       /api/v1/user [post]
 func (h Manager) CreateUser(c echo.Context) error {
-	var req model.UserCreateReq
+	var req model.User
 	if err := c.Bind(&req); err != nil {
 		return err
 	}

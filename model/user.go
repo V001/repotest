@@ -13,7 +13,7 @@ type User struct {
 	FirstName  string         `json:"firstName"`
 	LastName   string         `json:"lastName"`
 	FatherName *string        `json:"fatherName"`
-	Username   string         `json:"username" gorm:"unique"`
+	Name       string         `json:"username" gorm:"unique"`
 	Email      string         `json:"email" gorm:"unique"`
 	Password   string         `json:"password"`
 	PhotoURL   string         `json:"photo_url"`

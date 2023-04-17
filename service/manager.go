@@ -20,6 +20,6 @@ func NewManager(storage *storage.Storage) (*Manager, error) {
 
 	return &Manager{
 		Book: bSrv,
-		//User: uSrv,
+		User: uSrv,
 	}, nil
 }

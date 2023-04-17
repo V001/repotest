@@ -45,8 +45,14 @@ func (r *UserRepo) Create(ctx context.Context, user model.User) (uint, error) {
 	return user.ID, result.Error
 }
 
-func (r *UserRepo) Update(ctx context.Context, user model.User) error {
-	return r.DB.Where("username = ?", user.Username).Updates(&user).Error
+func (r *UserRepo) GetByID(ctx context.Context, id uint) (string, error) {
+	var resp string
+	result := r.DB.Table("users").WithContext(ctx).Where("id = ?", id).Select("name").Find(&resp)
+	return resp, result.Error
+}
+
+func (r *UserRepo) Update(ctx context.Context, user model.User, someField string) error {
+	return r.DB.Where("username = ?", user.Name).Updates(&user).Error
 }
 
 func (r *UserRepo) Delete(ctx context.Context, ID int) error {

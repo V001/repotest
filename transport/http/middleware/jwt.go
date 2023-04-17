@@ -18,7 +18,7 @@ func NewJWTAuth(cfg *config.Config, user service.IUserService) *JWTAuth {
 //func (m *JWTAuth) GenerateJWT(username string) (tokenString string, err error) {
 //	expirationTime := time.Now().Add(1000 * time.Hour)
 //	claims := &model.JWTClaim{
-//		Username: username,
+//		Name: username,
 //		StandardClaims: jwt.StandardClaims{
 //			ExpiresAt: expirationTime.Unix(),
 //		},
@@ -56,7 +56,7 @@ func NewJWTAuth(cfg *config.Config, user service.IUserService) *JWTAuth {
 //				return echo.NewHTTPError(403, err.Error())
 //			}
 //
-//			ctx := context.WithValue(c.Request().Context(), model.ContextUsername, claims.Username)
+//			ctx := context.WithValue(c.Request().Context(), model.ContextUsername, claims.Name)
 //			c.SetRequest(c.Request().WithContext(ctx))
 //		}
 //		return next(c)
@@ -79,14 +79,14 @@ func NewJWTAuth(cfg *config.Config, user service.IUserService) *JWTAuth {
 //		if err != nil {
 //			return echo.NewHTTPError(403, err.Error())
 //		}
-//		isVerify, err := m.User.IsVerified(c.Request().Context(), claims.Username)
+//		isVerify, err := m.User.IsVerified(c.Request().Context(), claims.Name)
 //		if err != nil {
 //			return err
 //		}
 //		if !isVerify {
 //			return echo.NewHTTPError(http.StatusUnauthorized, errors.New("user is not verified"))
 //		}
-//		ctx := context.WithValue(c.Request().Context(), model.ContextUsername, claims.Username)
+//		ctx := context.WithValue(c.Request().Context(), model.ContextUsername, claims.Name)
 //		c.SetRequest(c.Request().WithContext(ctx))
 //		return next(c)
 //	}

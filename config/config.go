@@ -11,7 +11,7 @@ import (
 type Config struct {
 	HTTP     HTTP
 	Port     int    `env:"PORT" envDefault:"9091"`
-	Database string `env:"DATABASE" envDefault:"easdasd"`
+	Database string `env:"DATABASE" envDefault:"user=admin password=admin dbname=postgres sslmode=disable host=localhost port=5432"`
 	JWTKey   string `envconfig:"JWT_KEY" default:"supersecret"`
 	PgURL    string `envconfig:"PG_URL" default:"user=root password=secret dbname=auth sslmode=disable host=localhost port=5432" `
 }

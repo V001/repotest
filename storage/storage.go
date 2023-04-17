@@ -16,8 +16,9 @@ type IBookRepository interface {
 
 type IUserRepository interface {
 	Create(ctx context.Context, user model.User) (uint, error)
-	Update(ctx context.Context, user model.User) error
+	Update(ctx context.Context, user model.User, someField string) error
 	Delete(ctx context.Context, ID int) error
+	GetByID(ctx context.Context, id uint) (string, error)
 	GetAll(ctx context.Context) ([]model.User, error)
 	Auth(ctx context.Context, user model.User) error
 	GetByUsername(ctx context.Context, username string) (model.User, error)
@@ -45,12 +46,6 @@ func New(ctx context.Context, cfg *config.Config) (*Storage, error) {
 	pgDB, err := postgre.Dial(ctx, cfg.Database)
 	if err != nil {
 		return nil, err
-	}
-
-	if pgDB != nil {
-		if err := pgDB.Migrator().AutoMigrate(cfg.Database); err != nil {
-			return nil, err
-		}
 	}
 
 	uRepo := postgre.NewUserRepo(pgDB)
